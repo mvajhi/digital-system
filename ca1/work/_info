@@ -1,0 +1,87 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+d/home/mvajhi/code/digital-system
+vMy_OC
+Z0 DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
+Z1 !s110 1699275683
+!i10b 1
+!s100 5fK3dZ0I^1kNfd1I2:T3G0
+Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
+IK7dY?mdXSz^9omGFi;m5<2
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+S1
+Z4 d/home/mvajhi/code/digital-system/ca1
+w1699275591
+8/home/mvajhi/code/digital-system/ca1/test.sv
+F/home/mvajhi/code/digital-system/ca1/test.sv
+!i122 70
+Z5 L0 1 29
+Z6 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z7 !s108 1699275683.000000
+!s107 /home/mvajhi/code/digital-system/ca1/test.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|/home/mvajhi/code/digital-system/ca1/test.sv|
+!i113 1
+Z8 o-work work -sv
+Z9 tCvgOpt 0
+n@my_@o@c
+vq1
+R0
+R1
+!i10b 1
+!s100 l3THciPndDlm8DXXZCVbT1
+R2
+I1RDkcaS6Ak123Kegj4g9H3
+R3
+S1
+R4
+w1699268451
+8/home/mvajhi/code/digital-system/ca1/1.sv
+F/home/mvajhi/code/digital-system/ca1/1.sv
+!i122 68
+L0 1 31
+R6
+r1
+!s85 0
+31
+R7
+!s107 /home/mvajhi/code/digital-system/ca1/1.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|/home/mvajhi/code/digital-system/ca1/1.sv|
+!i113 1
+R8
+R9
+vtb
+R0
+R1
+!i10b 1
+!s100 LTnco<O;PdX2iM6:3A<BU0
+R2
+I=5^CGE7QiUbWVcdZUFO2N0
+R3
+S1
+R4
+w1699275666
+8/home/mvajhi/code/digital-system/ca1/tb.sv
+F/home/mvajhi/code/digital-system/ca1/tb.sv
+!i122 69
+R5
+R6
+r1
+!s85 0
+31
+R7
+!s107 /home/mvajhi/code/digital-system/ca1/tb.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|/home/mvajhi/code/digital-system/ca1/tb.sv|
+!i113 1
+R8
+R9
