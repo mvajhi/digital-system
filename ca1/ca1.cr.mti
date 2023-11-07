@@ -1,8 +1,0 @@
-/home/mvajhi/code/digital-system/ca1/1.sv {1 {vlog -work work -sv -stats=none /home/mvajhi/code/digital-system/ca1/1.sv
-Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
--- Compiling module q1
-
-Top level modules:
-	q1
-
-} {} {}}
