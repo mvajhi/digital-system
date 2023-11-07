@@ -1,108 +1,36 @@
 # Loading project ca1
 # Compile of 1.sv was successful.
 # Compile of tb.sv was successful.
-# Compile of test.sv was successful.
-# 3 compiles, 0 failed with no errors.
+# 2 compiles, 0 failed with no errors.
 vsim work.tb
 # vsim work.tb 
-# Start time: 15:52:16 on Nov 06,2023
+# Start time: 14:55:49 on Nov 07,2023
 # Loading sv_std.std
 # Loading work.tb
-# Loading work.My_OC
-add wave -position end  sim:/tb/aa
-add wave -position end  sim:/tb/bb
-add wave -position end  sim:/tb/cc
-add wave -position end  sim:/tb/out0
+# Loading work.q1
 run -all
-# ** Note: $stop    : /home/mvajhi/code/digital-system/ca1/tb.sv(27)
-#    Time: 500 ps  Iteration: 0  Instance: /tb
-# Break in Module tb at /home/mvajhi/code/digital-system/ca1/tb.sv line 27
+# ** Note: $stop    : /home/mvajhi/code/digital-system/ca1/tb.sv(107)
+#    Time: 500 ns  Iteration: 0  Instance: /tb
+# Break in Module tb at /home/mvajhi/code/digital-system/ca1/tb.sv line 107
+add wave -position end sim:/tb/*
+run -all
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+run -all
+# ** Note: $stop    : /home/mvajhi/code/digital-system/ca1/tb.sv(107)
+#    Time: 500 ns  Iteration: 0  Instance: /tb
+# Break in Module tb at /home/mvajhi/code/digital-system/ca1/tb.sv line 107
 # Compile of 1.sv was successful.
 # Compile of tb.sv was successful.
-# Compile of test.sv was successful.
-# 3 compiles, 0 failed with no errors.
+# 2 compiles, 0 failed with no errors.
+# Compile of 1.sv was successful.
+# Compile of tb.sv was successful.
+# 2 compiles, 0 failed with no errors.
 restart -f
 # ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
 # Loading work.tb
-# Loading work.My_OC
-# Load canceled
+# Loading work.q1
 run -all
-# ** Note: $stop    : /home/mvajhi/code/digital-system/ca1/tb.sv(27)
-#    Time: 500 ps  Iteration: 0  Instance: /tb
-# Break in Module tb at /home/mvajhi/code/digital-system/ca1/tb.sv line 27
-add wave -position end  sim:/tb/test/a
-add wave -position end  sim:/tb/test/b
-add wave -position end  sim:/tb/test/c
-add wave -position end  sim:/tb/test/w
-add wave -position end  sim:/tb/test/vdd
-add wave -position end  sim:/tb/test/gnd
-add wave -position end  sim:/tb/test/t1
-add wave -position end  sim:/tb/test/t2
-add wave -position end  sim:/tb/test/t3
-add wave -position end  sim:/tb/test/t4
-add wave -position end  sim:/tb/test/r1
-add wave -position end  sim:/tb/test/r2
-add wave -position end  sim:/tb/test/i
-add wave -position end  sim:/tb/test/j
-add wave -position end  sim:/tb/test/k
-add wave -position end  sim:/tb/test/a
-add wave -position end  sim:/tb/test/b
-add wave -position end  sim:/tb/test/c
-add wave -position end  sim:/tb/test/w
-add wave -position end  sim:/tb/test/vdd
-add wave -position end  sim:/tb/test/gnd
-add wave -position end  sim:/tb/test/t1
-add wave -position end  sim:/tb/test/t2
-add wave -position end  sim:/tb/test/t3
-add wave -position end  sim:/tb/test/t4
-add wave -position end  sim:/tb/test/r1
-add wave -position end  sim:/tb/test/r2
-add wave -position end  sim:/tb/test/i
-add wave -position end  sim:/tb/test/j
-add wave -position end  sim:/tb/test/k
-restart -f
-run -all
-# ** Note: $stop    : /home/mvajhi/code/digital-system/ca1/tb.sv(27)
-#    Time: 500 ps  Iteration: 0  Instance: /tb
-# Break in Module tb at /home/mvajhi/code/digital-system/ca1/tb.sv line 27
-# Compile of 1.sv was successful.
-# Compile of tb.sv was successful.
-# Compile of test.sv was successful.
-# 3 compiles, 0 failed with no errors.
-restart -f
-# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
-# Loading work.tb
-# Loading work.My_OC
-run -all
-# ** Note: $stop    : /home/mvajhi/code/digital-system/ca1/tb.sv(27)
-#    Time: 500 ps  Iteration: 0  Instance: /tb
-# Break in Module tb at /home/mvajhi/code/digital-system/ca1/tb.sv line 27
-# Compile of 1.sv was successful.
-# Compile of tb.sv was successful.
-# Compile of test.sv was successful.
-# 3 compiles, 0 failed with no errors.
-restart -f
-# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
-# Loading work.tb
-# Loading work.My_OC
-run -all
-# ** Note: $stop    : /home/mvajhi/code/digital-system/ca1/tb.sv(27)
-#    Time: 500 ps  Iteration: 0  Instance: /tb
-# Break in Module tb at /home/mvajhi/code/digital-system/ca1/tb.sv line 27
-restart -f
-run -all
-# ** Note: $stop    : /home/mvajhi/code/digital-system/ca1/tb.sv(27)
-#    Time: 500 ps  Iteration: 0  Instance: /tb
-# Break in Module tb at /home/mvajhi/code/digital-system/ca1/tb.sv line 27
-# Compile of 1.sv was successful.
-# Compile of tb.sv was successful.
-# Compile of test.sv was successful.
-# 3 compiles, 0 failed with no errors.
-restart -f
-# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
-# Loading work.tb
-# Loading work.My_OC
-run -all
-# ** Note: $stop    : /home/mvajhi/code/digital-system/ca1/tb.sv(27)
-#    Time: 500 ps  Iteration: 0  Instance: /tb
-# Break in Module tb at /home/mvajhi/code/digital-system/ca1/tb.sv line 27
+# ** Note: $stop    : /home/mvajhi/code/digital-system/ca1/tb.sv(107)
+#    Time: 300 ns  Iteration: 0  Instance: /tb
+# Break in Module tb at /home/mvajhi/code/digital-system/ca1/tb.sv line 107

@@ -9,79 +9,78 @@ z2
 !i10f 100
 cModel Technology
 d/home/mvajhi/code/digital-system
-vMy_OC
 Z0 DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
-Z1 !s110 1699275683
+!s110 1699275683
 !i10b 1
 !s100 5fK3dZ0I^1kNfd1I2:T3G0
-Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
+Z1 !s11b Dg1SIo80bB@j0V0VzS_@n1
 IK7dY?mdXSz^9omGFi;m5<2
-Z3 VDg1SIo80bB@j0V0VzS_@n1
+Z2 VDg1SIo80bB@j0V0VzS_@n1
 S1
-Z4 d/home/mvajhi/code/digital-system/ca1
+Z3 d/home/mvajhi/code/digital-system/ca1
 w1699275591
 8/home/mvajhi/code/digital-system/ca1/test.sv
 F/home/mvajhi/code/digital-system/ca1/test.sv
 !i122 70
-Z5 L0 1 29
-Z6 OV;L;2020.1;71
+L0 1 29
+Z4 OV;L;2020.1;71
 r1
 !s85 0
 31
-Z7 !s108 1699275683.000000
+!s108 1699275683.000000
 !s107 /home/mvajhi/code/digital-system/ca1/test.sv|
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|/home/mvajhi/code/digital-system/ca1/test.sv|
 !i113 1
-Z8 o-work work -sv
-Z9 tCvgOpt 0
+Z5 o-work work -sv
+Z6 tCvgOpt 0
 n@my_@o@c
 vq1
 R0
-R1
+Z7 !s110 1699356597
 !i10b 1
-!s100 l3THciPndDlm8DXXZCVbT1
+!s100 B2GU50X;5>^mPQZa6d11f0
+R1
+IJiP>0Uf4Z1m?S?PWYH;OS2
 R2
-I1RDkcaS6Ak123Kegj4g9H3
-R3
 S1
-R4
-w1699268451
+R3
+w1699355673
 8/home/mvajhi/code/digital-system/ca1/1.sv
 F/home/mvajhi/code/digital-system/ca1/1.sv
-!i122 68
-L0 1 31
-R6
+!i122 95
+L0 2 38
+R4
 r1
 !s85 0
 31
-R7
+Z8 !s108 1699356597.000000
 !s107 /home/mvajhi/code/digital-system/ca1/1.sv|
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|/home/mvajhi/code/digital-system/ca1/1.sv|
 !i113 1
-R8
-R9
-vtb
-R0
-R1
-!i10b 1
-!s100 LTnco<O;PdX2iM6:3A<BU0
-R2
-I=5^CGE7QiUbWVcdZUFO2N0
-R3
-S1
-R4
-w1699275666
-8/home/mvajhi/code/digital-system/ca1/tb.sv
-F/home/mvajhi/code/digital-system/ca1/tb.sv
-!i122 69
 R5
 R6
+vtb
+R0
+R7
+!i10b 1
+!s100 8O5>CFAKJ69eBHICWTi^U3
+R1
+I`U>QiW54aGQhGOVbUHO]C3
+R2
+S1
+R3
+w1699356582
+8/home/mvajhi/code/digital-system/ca1/tb.sv
+F/home/mvajhi/code/digital-system/ca1/tb.sv
+!i122 96
+L0 2 108
+R4
 r1
 !s85 0
 31
-R7
+R8
 !s107 /home/mvajhi/code/digital-system/ca1/tb.sv|
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|/home/mvajhi/code/digital-system/ca1/tb.sv|
 !i113 1
-R8
-R9
+R5
+R6
