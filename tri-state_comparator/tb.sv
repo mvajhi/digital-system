@@ -2,7 +2,7 @@
 module tb();
     logic aa,bb;
     wire out;
-    comparator_1bit my_comp (.a(aa), .b(bb), .in(0), .w(out));
+    comparator_1bit_v2 my_comp (.a(aa), .b(bb), .in(1'b0), .w(out));
 
     initial begin
         #100 aa = 0; bb = 0;
