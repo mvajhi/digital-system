@@ -26,3 +26,10 @@ module comparator_1bit_v2 (input a, b, in, output w);
     tri_not g5 (.a(j), .en(ib), .w(w));
     tri_not g6 (.a(inb), .en(i), .w(w));
 endmodule
+
+module comparator_3bit (input [2:0] a, input [2:0] b, input in, output w);
+    wire [0:1] out;
+    comparator_1bit_v2 comp1 (.a(a[2]), .b(b[2]), .in(out[1]), .w(w));
+    comparator_1bit_v2 comp2 (.a(a[1]), .b(b[1]), .in(out[0]), .w(out[1]));
+    comparator_1bit_v2 comp3 (.a(a[0]), .b(b[0]), .in(in), .w(out[0]));
+endmodule
