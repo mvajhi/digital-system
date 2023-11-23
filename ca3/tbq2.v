@@ -8,6 +8,7 @@ module tbq2();
     wire zer, zersy, neg, negsy;
 
     q2 my_ALU (.w(w), .zer(zer), .neg(neg), .opc(opc), .ina(a), .inb(b), .inc(cin));
+    syq2 my_syALU (.w(wsy), .zer(zersy), .neg(negsy), .opc(opc), .ina(a), .inb(b), .inc(cin));
 
     initial {a, b, cin} = $random;
     initial repeat (20) #1000 {a, b, cin} = $random;
