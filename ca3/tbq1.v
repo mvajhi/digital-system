@@ -13,5 +13,4 @@ module tbq1();
     initial {a, b, cin} = $random;
     initial repeat (20) #1000 {a, b, cin} = $random;
     initial repeat (20) #1000 opc = opc + 3'b001;
-
 endmodule
