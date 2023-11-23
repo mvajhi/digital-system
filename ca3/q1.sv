@@ -9,8 +9,8 @@ module q1 (output logic [15:0] w, output logic zer,neg,
         case(opc)
             3'b000: w = ~ina + 1;
             3'b001: w = ina + 1;
-            3'b010: w = ina + ina + inc;
-            3'b011: w = ina + inb * 0.5;
+            3'b010: w = ina + inb + inc;
+            3'b011: w = ina + $signed(inb) * 0.5;
             3'b100: w = ina & inb;
             3'b101: w = ina | inb;
             3'b110: w = {ina[7:0], inb[7:0]};

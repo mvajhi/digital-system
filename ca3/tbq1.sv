@@ -9,6 +9,7 @@ module tbq1();
 
     q1 my_ALU (.w(w), .zer(zer), .neg(neg), .opc(opc), .ina(a), .inb(b), .inc(cin));
 
+    initial {a, b, cin} = $random;
     initial repeat (20) #100 {a, b, cin} = $random;
     initial repeat (20) #50 opc = opc + 3'b001;
 
