@@ -2,7 +2,7 @@
 
 module q2 (output reg [15:0] w, output reg zer,neg,
             input [2:0] opc, input [15:0] ina, inb, input inc);
-    wire [7:0][15:0] out;
+    wire [15:0] out [7:0];
     assign out[0] = ~ina + 1;
     assign out[1] = ina + 1;
     assign out[2] = ina + inb + inc;
