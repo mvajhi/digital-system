@@ -1,12 +1,12 @@
 `timescale 1ns/1ns
 
 module q2 (output reg [15:0] w, output reg zer,neg,
-            input [2:0] opc, input [15:0] ina, inb, input inc);
+            input [2:0] opc, input signed [15:0] ina, inb, input inc);
     wire [15:0] out [7:0];
     assign out[0] = ~ina + 1;
     assign out[1] = ina + 1;
     assign out[2] = ina + inb + inc;
-    assign out[3] = ina + ($signed(inb) >> 1);
+    assign out[3] = ina + (inb >>> 1);
     assign out[4] = ina & inb;
     assign out[5] = ina | inb;
     assign out[6] = {ina[7:0], inb[7:0]};
