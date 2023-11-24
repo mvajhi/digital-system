@@ -1,0 +1,17 @@
+# read design 
+read_verilog -sv q2_a.sv
+
+# generic synthesis
+synth -top q2_a
+
+# mapping to mycells.lib
+dfflibmap -liberty ./yosys/mycells.lib
+abc -liberty ./yosys/mycells.lib
+clean
+
+# write synthesized design
+write_verilog syq2_a.v
+
+read_verilog -sv q2_a.sv;synth -top q2_a;dfflibmap -liberty ./yosys/mycells.lib;abc -liberty ./yosys/mycells.lib;clean;write_verilog syq2_a.v;
+read_verilog -sv q2_a.sv synth -top q2_a dfflibmap -liberty ./yosys/mycells.lib;abc -liberty ./yosys/mycells.lib clean write_verilog syq2_a.v 
+read_verilog -sv q2_a.sv ; synth -top q2_a ; dfflibmap -liberty ./yosys/mycells.lib ; abc -liberty ./yosys/mycells.lib ; clean ; write_verilog syq2_a.v ;
