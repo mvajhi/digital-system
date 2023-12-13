@@ -1,4 +1,4 @@
-module tbq2_c();
+module tbq2_c_d();
     logic d = 0, clk = 0;
     wire Q, Qb;
     q2 d_flip_flop (d, clk, Q, Qb);
