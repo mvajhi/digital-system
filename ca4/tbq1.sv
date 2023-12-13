@@ -1,5 +1,5 @@
 module tbq1 ();
-    logic S = 0,R = 0;
+    logic S,R;
     wire Q_2, QB_2;
     wire Q_3, QB_3;
     q1_2in rs_latch_2in(S, R, Q_2, QB_2);
