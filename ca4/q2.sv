@@ -1,9 +1,7 @@
 module q2 (input D, CLK, output Q, Qb);
     wire G1_out, G2_out, G3_out, G4_out;
-    nand #8 G1(G1_out, G4_out, G2_out);
-    nand #8 G2(G2_out, G1_out, CLK);
-    nand #12 G3(G3_out, G4_out, G2_out, CLK);
-    nand #8 G4(G4_out, G3_out, D);
-    nand #8 G5(Q, G2_out, Qb);
-    nand #8 G6(Qb, G3_out, Q);
+    q1_2in G1_and_G2(G4_out, CLK, G1_out, G2_out);
+    q1_3in G3_and_G4(.S(CLK), .R(D), .in_s(G2_out), .in_r(D),
+                        .Q(G3_out), .Qb(G4_out));
+    q1_2in G5_and_G6(G2_out, G3_out, Q, Qb);
 endmodule
