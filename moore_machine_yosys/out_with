@@ -1,0 +1,616 @@
+
+ /----------------------------------------------------------------------------\
+ |                                                                            |
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |                                                                            |
+ |  Copyright (C) 2012 - 2019  Clifford Wolf <clifford@clifford.at>           |
+ |                                                                            |
+ |  Permission to use, copy, modify, and/or distribute this software for any  |
+ |  purpose with or without fee is hereby granted, provided that the above    |
+ |  copyright notice and this permission notice appear in all copies.         |
+ |                                                                            |
+ |  THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES  |
+ |  WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF          |
+ |  MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR   |
+ |  ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES    |
+ |  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN     |
+ |  ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF   |
+ |  OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.            |
+ |                                                                            |
+ \----------------------------------------------------------------------------/
+
+ Yosys 0.9 (git sha1 1979e0b)
+
+
+-- Running command `read_verilog moore_with_default.v; synth -top moor_with_default' --
+
+1. Executing Verilog-2005 frontend: moore_with_default.v
+Parsing Verilog input from `moore_with_default.v' to AST representation.
+Generating RTLIL representation for module `\moor_with_default'.
+Note: Assuming pure combinatorial block at moore_with_default.v:4 in
+compliance with IEC 62142(E):2005 / IEEE Std. 1364.1(E):2002. Recommending
+use of @* instead of @(...) for better match of synthesis and simulation.
+Successfully finished Verilog frontend.
+
+2. Executing SYNTH pass.
+
+2.1. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1.1. Analyzing design hierarchy..
+Top module:  \moor_with_default
+
+2.1.2. Analyzing design hierarchy..
+Top module:  \moor_with_default
+Removed 0 unused modules.
+
+2.2. Executing PROC pass (convert processes to netlists).
+
+2.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+2.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 1 switch rules as full_case in process $proc$moore_with_default.v:18$9 in module moor_with_default.
+Marked 1 switch rules as full_case in process $proc$moore_with_default.v:4$1 in module moor_with_default.
+Removed a total of 0 dead cases.
+
+2.2.3. Executing PROC_INIT pass (extract init attributes).
+
+2.2.4. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \rst in `\moor_with_default.$proc$moore_with_default.v:18$9'.
+
+2.2.5. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\moor_with_default.$proc$moore_with_default.v:18$9'.
+     1/1: $0\ps[2:0]
+Creating decoders for process `\moor_with_default.$proc$moore_with_default.v:4$1'.
+     1/2: $1\ns[2:0]
+     2/2: $0\ns[2:0]
+
+2.2.6. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\moor_with_default.\ns' from process `\moor_with_default.$proc$moore_with_default.v:4$1'.
+
+2.2.7. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\moor_with_default.\ps' using process `\moor_with_default.$proc$moore_with_default.v:18$9'.
+  created $adff cell `$procdff$17' with positive edge clock and positive level reset.
+
+2.2.8. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Removing empty process `moor_with_default.$proc$moore_with_default.v:18$9'.
+Found and cleaned up 1 empty switch in `\moor_with_default.$proc$moore_with_default.v:4$1'.
+Removing empty process `moor_with_default.$proc$moore_with_default.v:4$1'.
+Cleaned up 1 empty switch.
+
+2.3. Executing OPT_EXPR pass (perform const folding).
+Optimizing module moor_with_default.
+<suppressed ~1 debug messages>
+
+2.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \moor_with_default..
+Removed 0 unused cells and 5 unused wires.
+<suppressed ~1 debug messages>
+
+2.5. Executing CHECK pass (checking for obvious problems).
+checking module moor_with_default..
+found and reported 0 problems.
+
+2.6. Executing OPT pass (performing simple optimizations).
+
+2.6.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module moor_with_default.
+
+2.6.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\moor_with_default'.
+<suppressed ~3 debug messages>
+Removed a total of 1 cells.
+
+2.6.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \moor_with_default..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~2 debug messages>
+
+2.6.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \moor_with_default.
+Performed a total of 0 changes.
+
+2.6.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\moor_with_default'.
+<suppressed ~3 debug messages>
+Removed a total of 1 cells.
+
+2.6.6. Executing OPT_RMDFF pass (remove dff with constant values).
+
+2.6.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \moor_with_default..
+Removed 0 unused cells and 2 unused wires.
+<suppressed ~1 debug messages>
+
+2.6.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module moor_with_default.
+
+2.6.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+2.6.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \moor_with_default..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~2 debug messages>
+
+2.6.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \moor_with_default.
+    New ctrl vector for $pmux cell $procmux$11: { $procmux$16_CMP $procmux$14_CMP $procmux$13_CMP $auto$opt_reduce.cc:132:opt_mux$19 }
+    New input vector for $reduce_or cell $auto$opt_reduce.cc:126:opt_mux$18: { $eq$moore_with_default.v:16$7_Y $procmux$15_CMP }
+  Optimizing cells in module \moor_with_default.
+Performed a total of 2 changes.
+
+2.6.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\moor_with_default'.
+Removed a total of 0 cells.
+
+2.6.13. Executing OPT_RMDFF pass (remove dff with constant values).
+
+2.6.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \moor_with_default..
+
+2.6.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module moor_with_default.
+
+2.6.16. Rerunning OPT passes. (Maybe there is more to do..)
+
+2.6.17. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \moor_with_default..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~2 debug messages>
+
+2.6.18. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \moor_with_default.
+Performed a total of 0 changes.
+
+2.6.19. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\moor_with_default'.
+Removed a total of 0 cells.
+
+2.6.20. Executing OPT_RMDFF pass (remove dff with constant values).
+
+2.6.21. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \moor_with_default..
+
+2.6.22. Executing OPT_EXPR pass (perform const folding).
+Optimizing module moor_with_default.
+
+2.6.23. Finished OPT passes. (There is nothing left to do.)
+
+2.7. Executing WREDUCE pass (reducing word size of cells).
+Removed top 1 bits (of 3) from mux cell moor_with_default.$ternary$moore_with_default.v:9$4 ($mux).
+Removed top 2 bits (of 3) from mux cell moor_with_default.$ternary$moore_with_default.v:7$2 ($mux).
+Removed top 1 bits (of 3) from mux cell moor_with_default.$ternary$moore_with_default.v:11$6 ($mux).
+Removed top 1 bits (of 3) from port B of cell moor_with_default.$procmux$13_CMP0 ($eq).
+Removed top 1 bits (of 3) from port B of cell moor_with_default.$procmux$14_CMP0 ($eq).
+Removed top 2 bits (of 3) from port B of cell moor_with_default.$procmux$15_CMP0 ($eq).
+Removed top 1 bits (of 3) from wire moor_with_default.$ternary$moore_with_default.v:11$6_Y.
+Removed top 2 bits (of 3) from wire moor_with_default.$ternary$moore_with_default.v:7$2_Y.
+Removed top 1 bits (of 3) from wire moor_with_default.$ternary$moore_with_default.v:9$4_Y.
+
+2.8. Executing PEEPOPT pass (run peephole optimizers).
+
+2.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \moor_with_default..
+Removed 0 unused cells and 3 unused wires.
+<suppressed ~1 debug messages>
+
+2.10. Executing TECHMAP pass (map to technology primitives).
+
+2.10.1. Executing Verilog-2005 frontend: /usr/bin/../share/yosys/cmp2lut.v
+Parsing Verilog input from `/usr/bin/../share/yosys/cmp2lut.v' to AST representation.
+Generating RTLIL representation for module `\_90_lut_cmp_'.
+Successfully finished Verilog frontend.
+
+2.10.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~68 debug messages>
+
+2.11. Executing ALUMACC pass (create $alu and $macc cells).
+Extracting $alu and $macc cells in module moor_with_default:
+  created 0 $alu and 0 $macc cells.
+
+2.12. Executing SHARE pass (SAT-based resource sharing).
+
+2.13. Executing OPT pass (performing simple optimizations).
+
+2.13.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module moor_with_default.
+
+2.13.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\moor_with_default'.
+Removed a total of 0 cells.
+
+2.13.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \moor_with_default..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~2 debug messages>
+
+2.13.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \moor_with_default.
+Performed a total of 0 changes.
+
+2.13.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\moor_with_default'.
+Removed a total of 0 cells.
+
+2.13.6. Executing OPT_RMDFF pass (remove dff with constant values).
+
+2.13.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \moor_with_default..
+
+2.13.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module moor_with_default.
+
+2.13.9. Finished OPT passes. (There is nothing left to do.)
+
+2.14. Executing FSM pass (extract and optimize FSM).
+
+2.14.1. Executing FSM_DETECT pass (finding FSMs in design).
+Found FSM state register moor_with_default.ps.
+
+2.14.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+Extracting FSM `\ps' from module `\moor_with_default'.
+  found $adff cell for state register: $procdff$17
+  root of input selection tree: \ns
+  found reset state: 3'000 (from async reset)
+  found ctrl input: $auto$opt_reduce.cc:132:opt_mux$19
+  found ctrl input: $procmux$13_CMP
+  found ctrl input: $procmux$14_CMP
+  found ctrl input: $procmux$16_CMP
+  found ctrl input: \j
+  found state code: 3'010
+  found state code: 3'001
+  found state code: 3'100
+  found state code: 3'011
+  found ctrl output: $eq$moore_with_default.v:16$7_Y
+  found ctrl output: $procmux$13_CMP
+  found ctrl output: $procmux$14_CMP
+  found ctrl output: $procmux$15_CMP
+  found ctrl output: $procmux$16_CMP
+  ctrl inputs: { \j $auto$opt_reduce.cc:132:opt_mux$19 }
+  ctrl outputs: { $procmux$16_CMP $procmux$15_CMP $procmux$14_CMP $procmux$13_CMP $eq$moore_with_default.v:16$7_Y \ns }
+  transition:      3'000 2'0- ->      3'000 8'10000000
+  transition:      3'000 2'1- ->      3'001 8'10000001
+  transition:      3'100 2'0- ->      3'010 8'00001010
+  transition:      3'100 2'1- ->      3'001 8'00001001
+  transition:      3'010 2'0- ->      3'000 8'00100000
+  transition:      3'010 2'1- ->      3'011 8'00100011
+  transition:      3'001 2'0- ->      3'010 8'01000010
+  transition:      3'001 2'1- ->      3'001 8'01000001
+  transition:      3'011 2'0- ->      3'010 8'00010010
+  transition:      3'011 2'1- ->      3'100 8'00010100
+
+2.14.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+Optimizing FSM `$fsm$\ps$23' from module `\moor_with_default'.
+  Removing unused input signal $auto$opt_reduce.cc:132:opt_mux$19.
+
+2.14.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \moor_with_default..
+Removed 12 unused cells and 12 unused wires.
+<suppressed ~13 debug messages>
+
+2.14.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+Optimizing FSM `$fsm$\ps$23' from module `\moor_with_default'.
+  Removing unused output signal \ns [0].
+  Removing unused output signal \ns [1].
+  Removing unused output signal \ns [2].
+  Removing unused output signal $procmux$13_CMP.
+  Removing unused output signal $procmux$14_CMP.
+  Removing unused output signal $procmux$15_CMP.
+  Removing unused output signal $procmux$16_CMP.
+
+2.14.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+Recoding FSM `$fsm$\ps$23' from module `\moor_with_default' using `auto' encoding:
+  mapping auto encoding to `one-hot` for this FSM.
+  000 -> ----1
+  100 -> ---1-
+  010 -> --1--
+  001 -> -1---
+  011 -> 1----
+
+2.14.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+FSM `$fsm$\ps$23' from module `\moor_with_default':
+-------------------------------------
+
+  Information on FSM $fsm$\ps$23 (\ps):
+
+  Number of input signals:    1
+  Number of output signals:   1
+  Number of state bits:       5
+
+  Input signals:
+    0: \j
+
+  Output signals:
+    0: $eq$moore_with_default.v:16$7_Y
+
+  State encoding:
+    0:    5'----1  <RESET STATE>
+    1:    5'---1-
+    2:    5'--1--
+    3:    5'-1---
+    4:    5'1----
+
+  Transition Table (state_in, ctrl_in, state_out, ctrl_out):
+      0:     0 1'0   ->     0 1'0
+      1:     0 1'1   ->     3 1'0
+      2:     1 1'0   ->     2 1'1
+      3:     1 1'1   ->     3 1'1
+      4:     2 1'0   ->     0 1'0
+      5:     2 1'1   ->     4 1'0
+      6:     3 1'0   ->     2 1'0
+      7:     3 1'1   ->     3 1'0
+      8:     4 1'1   ->     1 1'0
+      9:     4 1'0   ->     2 1'0
+
+-------------------------------------
+
+2.14.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+Mapping FSM `$fsm$\ps$23' from module `\moor_with_default'.
+
+2.15. Executing OPT pass (performing simple optimizations).
+
+2.15.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module moor_with_default.
+<suppressed ~5 debug messages>
+
+2.15.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\moor_with_default'.
+<suppressed ~3 debug messages>
+Removed a total of 1 cells.
+
+2.15.3. Executing OPT_RMDFF pass (remove dff with constant values).
+
+2.15.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \moor_with_default..
+Removed 0 unused cells and 13 unused wires.
+<suppressed ~2 debug messages>
+
+2.15.5. Finished fast OPT passes.
+
+2.16. Executing MEMORY pass.
+
+2.16.1. Executing MEMORY_DFF pass (merging $dff cells to $memrd and $memwr).
+
+2.16.2. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \moor_with_default..
+
+2.16.3. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+2.16.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \moor_with_default..
+
+2.16.5. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+2.17. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \moor_with_default..
+
+2.18. Executing OPT pass (performing simple optimizations).
+
+2.18.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module moor_with_default.
+<suppressed ~1 debug messages>
+
+2.18.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\moor_with_default'.
+Removed a total of 0 cells.
+
+2.18.3. Executing OPT_RMDFF pass (remove dff with constant values).
+
+2.18.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \moor_with_default..
+
+2.18.5. Finished fast OPT passes.
+
+2.19. Executing MEMORY_MAP pass (converting $mem cells to logic and flip-flops).
+
+2.20. Executing OPT pass (performing simple optimizations).
+
+2.20.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module moor_with_default.
+
+2.20.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\moor_with_default'.
+Removed a total of 0 cells.
+
+2.20.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \moor_with_default..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+2.20.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \moor_with_default.
+    New input vector for $reduce_or cell $auto$fsm_map.cc:105:implement_pattern_cache$53: { \ps [0] \ps [1] \ps [3] }
+    New input vector for $reduce_or cell $auto$fsm_map.cc:105:implement_pattern_cache$47: { \ps [1] \ps [3] \ps [4] }
+    New input vector for $reduce_or cell $auto$fsm_map.cc:105:implement_pattern_cache$37: { \ps [0] \ps [2] }
+  Optimizing cells in module \moor_with_default.
+Performed a total of 3 changes.
+
+2.20.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\moor_with_default'.
+Removed a total of 0 cells.
+
+2.20.6. Executing OPT_RMDFF pass (remove dff with constant values).
+
+2.20.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \moor_with_default..
+
+2.20.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module moor_with_default.
+
+2.20.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+2.20.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \moor_with_default..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+2.20.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \moor_with_default.
+Performed a total of 0 changes.
+
+2.20.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\moor_with_default'.
+Removed a total of 0 cells.
+
+2.20.13. Executing OPT_RMDFF pass (remove dff with constant values).
+
+2.20.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \moor_with_default..
+
+2.20.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module moor_with_default.
+
+2.20.16. Finished OPT passes. (There is nothing left to do.)
+
+2.21. Executing TECHMAP pass (map to technology primitives).
+
+2.21.1. Executing Verilog-2005 frontend: <techmap.v>
+Parsing Verilog input from `<techmap.v>' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `\$__div_mod_u'.
+Generating RTLIL representation for module `\$__div_mod'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_lut'.
+Successfully finished Verilog frontend.
+
+2.21.2. Continuing TECHMAP pass.
+Using extmapper simplemap for cells of type $and.
+Using extmapper simplemap for cells of type $adff.
+Using extmapper simplemap for cells of type $reduce_or.
+Using extmapper simplemap for cells of type $not.
+No more expansions possible.
+<suppressed ~10 debug messages>
+
+2.22. Executing OPT pass (performing simple optimizations).
+
+2.22.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module moor_with_default.
+
+2.22.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\moor_with_default'.
+Removed a total of 0 cells.
+
+2.22.3. Executing OPT_RMDFF pass (remove dff with constant values).
+
+2.22.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \moor_with_default..
+Removed 0 unused cells and 3 unused wires.
+<suppressed ~1 debug messages>
+
+2.22.5. Finished fast OPT passes.
+
+2.23. Executing ABC pass (technology mapping using ABC).
+
+2.23.1. Extracting gate netlist of module `\moor_with_default' to `<abc-temp-dir>/input.blif'..
+Extracted 11 gates and 17 wires to a netlist network with 6 inputs and 5 outputs.
+
+2.23.1.1. Executing ABC.
+Running ABC command: berkeley-abc -s -f <abc-temp-dir>/abc.script 2>&1
+ABC: ABC command line: "source <abc-temp-dir>/abc.script".
+ABC: 
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_library <abc-temp-dir>/stdcells.genlib 
+ABC: Entered genlib library with 17 gates from file "<abc-temp-dir>/stdcells.genlib".
+ABC: + strash 
+ABC: + dretime 
+ABC: + retime 
+ABC: + map 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+
+2.23.1.2. Re-integrating ABC results.
+ABC RESULTS:               AND cells:        2
+ABC RESULTS:            ANDNOT cells:        1
+ABC RESULTS:              AOI3 cells:        2
+ABC RESULTS:               NOR cells:        3
+ABC RESULTS:               NOT cells:        3
+ABC RESULTS:        internal signals:        6
+ABC RESULTS:           input signals:        6
+ABC RESULTS:          output signals:        5
+Removing temp directory.
+
+2.24. Executing OPT pass (performing simple optimizations).
+
+2.24.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module moor_with_default.
+
+2.24.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\moor_with_default'.
+Removed a total of 0 cells.
+
+2.24.3. Executing OPT_RMDFF pass (remove dff with constant values).
+
+2.24.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \moor_with_default..
+Removed 0 unused cells and 17 unused wires.
+<suppressed ~1 debug messages>
+
+2.24.5. Finished fast OPT passes.
+
+2.25. Executing HIERARCHY pass (managing design hierarchy).
+
+2.25.1. Analyzing design hierarchy..
+Top module:  \moor_with_default
+
+2.25.2. Analyzing design hierarchy..
+Top module:  \moor_with_default
+Removed 0 unused modules.
+
+2.26. Printing statistics.
+
+=== moor_with_default ===
+
+   Number of wires:                 16
+   Number of wire bits:             20
+   Number of public wires:           5
+   Number of public wire bits:       9
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 16
+     $_ANDNOT_                       1
+     $_AND_                          2
+     $_AOI3_                         2
+     $_DFF_PP0_                      4
+     $_DFF_PP1_                      1
+     $_NOR_                          3
+     $_NOT_                          3
+
+2.27. Executing CHECK pass (checking for obvious problems).
+checking module moor_with_default..
+found and reported 0 problems.
+
+End of script. Logfile hash: d68ba8cb7e
+CPU: user 0.03s system 0.00s, MEM: 16.59 MB total, 10.88 MB resident
+Yosys 0.9 (git sha1 1979e0b)
+Time spent: 19% 16x opt_clean (0 sec), 19% 4x read_verilog (0 sec), ...
