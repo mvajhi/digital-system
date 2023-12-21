@@ -22,7 +22,7 @@
  Yosys 0.9 (git sha1 1979e0b)
 
 
--- Running command `read_verilog moore_without_default.v; synth -top moor_without_default' --
+-- Running command `read_verilog moore_without_default.v; synth -top moor_without_default; dfflibmap -liberty ./yosys/mycells.lib; abc -liberty ./yosys/mycells.lib; clean; write_verilog synth_moore_without_default.v' --
 
 1. Executing Verilog-2005 frontend: moore_without_default.v
 Parsing Verilog input from `moore_without_default.v' to AST representation.
@@ -610,7 +610,88 @@ Removed 0 unused modules.
 checking module moor_without_default..
 found and reported 0 problems.
 
-End of script. Logfile hash: e71c1406fe
-CPU: user 0.04s system 0.00s, MEM: 16.59 MB total, 10.88 MB resident
+3. Executing DFFLIBMAP pass (mapping DFF cells to sequential cells from liberty file).
+  cell DFF (noninv, pins=3, area=18.00) is a direct match for cell type $_DFF_P_.
+  cell DFF_PP0 (noninv, pins=4, area=0.00) is a direct match for cell type $_DFF_PP0_.
+  cell DFF_PP1 (noninv, pins=4, area=0.00) is a direct match for cell type $_DFF_PP1_.
+  create mapping for $_DFF_PN0_ from mapping for $_DFF_PP0_.
+  create mapping for $_DFF_PN1_ from mapping for $_DFF_PP1_.
+  create mapping for $_DFF_N_ from mapping for $_DFF_P_.
+  create mapping for $_DFF_NN0_ from mapping for $_DFF_PN0_.
+  create mapping for $_DFF_NP0_ from mapping for $_DFF_NN0_.
+  create mapping for $_DFF_NN1_ from mapping for $_DFF_NN0_.
+  create mapping for $_DFF_NP1_ from mapping for $_DFF_NN1_.
+  final dff cell mappings:
+    DFF _DFF_N_ (.C(~C), .D( D), .Q( Q));
+    DFF _DFF_P_ (.C( C), .D( D), .Q( Q));
+    DFF_PP0 _DFF_NN0_ (.C(~C), .D( D), .Q( Q), .R(~R));
+    DFF_PP0 _DFF_NN1_ (.C(~C), .D(~D), .Q(~Q), .R(~R));
+    DFF_PP0 _DFF_NP0_ (.C(~C), .D( D), .Q( Q), .R( R));
+    DFF_PP0 _DFF_NP1_ (.C(~C), .D(~D), .Q(~Q), .R( R));
+    DFF_PP0 _DFF_PN0_ (.C( C), .D( D), .Q( Q), .R(~R));
+    DFF_PP1 _DFF_PN1_ (.C( C), .D( D), .Q( Q), .R(~R));
+    DFF_PP0 _DFF_PP0_ (.C( C), .D( D), .Q( Q), .R( R));
+    DFF_PP1 _DFF_PP1_ (.C( C), .D( D), .Q( Q), .R( R));
+    unmapped dff cell: $_DFFSR_NNN_
+    unmapped dff cell: $_DFFSR_NNP_
+    unmapped dff cell: $_DFFSR_NPN_
+    unmapped dff cell: $_DFFSR_NPP_
+    unmapped dff cell: $_DFFSR_PNN_
+    unmapped dff cell: $_DFFSR_PNP_
+    unmapped dff cell: $_DFFSR_PPN_
+    unmapped dff cell: $_DFFSR_PPP_
+Mapping DFF cells in module `\moor_without_default':
+  mapped 4 $_DFF_PP0_ cells to \DFF_PP0 cells.
+  mapped 1 $_DFF_PP1_ cells to \DFF_PP1 cells.
+
+4. Executing ABC pass (technology mapping using ABC).
+
+4.1. Extracting gate netlist of module `\moor_without_default' to `<abc-temp-dir>/input.blif'..
+Extracted 11 gates and 17 wires to a netlist network with 6 inputs and 5 outputs.
+
+4.1.1. Executing ABC.
+Running ABC command: berkeley-abc -s -f <abc-temp-dir>/abc.script 2>&1
+ABC: ABC command line: "source <abc-temp-dir>/abc.script".
+ABC: 
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_lib -w /home/mvajhi/code/digital-system/moore_machine_yosys/./yosys/mycells.lib 
+ABC: Parsing finished successfully.  Parsing time =     0.00 sec
+ABC: Warning: Templates are not defined.
+ABC: Libery parser cannot read "time_unit".  Assuming   time_unit : "1ns".
+ABC: Libery parser cannot read "capacitive_load_unit". Assuming   capacitive_load_unit(1, pf).
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFF".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFF_PP0".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFF_PP1".
+ABC: Library "demo" from "/home/mvajhi/code/digital-system/moore_machine_yosys/./yosys/mycells.lib" has 4 cells (3 skipped: 3 seq; 0 tri-state; 0 no func; 0 dont_use).  Time =     0.00 sec
+ABC: Memory =    0.00 MB. Time =     0.00 sec
+ABC: + strash 
+ABC: + ifraig 
+ABC: + scorr 
+ABC: Warning: The network is combinational (run "fraig" or "fraig_sweep").
+ABC: + dc2 
+ABC: + dretime 
+ABC: + retime 
+ABC: + strash 
+ABC: + &get -n 
+ABC: + &dch -f 
+ABC: + &nf 
+ABC: + &put 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+
+4.1.2. Re-integrating ABC results.
+ABC RESULTS:              NAND cells:        3
+ABC RESULTS:               NOR cells:        6
+ABC RESULTS:               NOT cells:        5
+ABC RESULTS:        internal signals:        6
+ABC RESULTS:           input signals:        6
+ABC RESULTS:          output signals:        5
+Removing temp directory.
+Removed 0 unused cells and 17 unused wires.
+
+5. Executing Verilog backend.
+Dumping module `\moor_without_default'.
+
+End of script. Logfile hash: bf8dc17904
+CPU: user 0.03s system 0.01s, MEM: 16.60 MB total, 10.75 MB resident
 Yosys 0.9 (git sha1 1979e0b)
-Time spent: 20% 4x read_verilog (0 sec), 19% 16x opt_clean (0 sec), ...
+Time spent: 18% 4x read_verilog (0 sec), 18% 16x opt_clean (0 sec), ...
