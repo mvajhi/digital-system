@@ -1,0 +1,16 @@
+Quartus Prime Archive log --	/home/mvajhi/code/digital-system/test/dse/dse1/test.qarlog
+
+Archive:	/home/mvajhi/code/digital-system/test/dse/dse1/test.qar
+Date:		Fri Dec 29 16:10:52 2023
+Quartus Prime		23.1std.0 Build 991 11/28/2023 SC Lite Edition
+
+	=========== Files Selected: ===========
+/home/mvajhi/code/digital-system/test/test.bdf
+/home/mvajhi/code/digital-system/test/test.dse
+/home/mvajhi/code/digital-system/test/test.qpf
+/home/mvajhi/code/digital-system/test/test.qsf
+/home/mvajhi/intelFPGA/quartus/quartus/linux64/assignment_defaults.qdf
+	======= Total: 5 files to archive =======
+
+	================ Status: ===============
+All files archived successfully.

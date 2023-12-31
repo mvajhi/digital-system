@@ -1,0 +1,42 @@
+{
+	"title" : "Flow OS Summary",
+	"data" : {
+		"data" : [
+			{
+				"0" : "Analysis & Synthesis",
+				"1" : "mahdi-laptop",
+				"2" : "Ubuntu 22.04.3",
+				"3" : "22",
+				"4" : "x86_64"
+			},
+			{
+				"0" : "Fitter",
+				"1" : "mahdi-laptop",
+				"2" : "Ubuntu 22.04.3",
+				"3" : "22",
+				"4" : "x86_64"
+			},
+			{
+				"0" : "Assembler",
+				"1" : "mahdi-laptop",
+				"2" : "Ubuntu 22.04.3",
+				"3" : "22",
+				"4" : "x86_64"
+			},
+			{
+				"0" : "Timing Analyzer",
+				"1" : "mahdi-laptop",
+				"2" : "Ubuntu 22.04.3",
+				"3" : "22",
+				"4" : "x86_64"
+			},
+			{
+				"0" : "EDA Netlist Writer",
+				"1" : "mahdi-laptop",
+				"2" : "Ubuntu 22.04.3",
+				"3" : "22",
+				"4" : "x86_64"
+			}
+		]
+	}
+}

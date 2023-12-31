@@ -1,0 +1,11 @@
+|test
+co <= inst4.DB_MAX_OUTPUT_PORT_TYPE
+a => inst2.IN0
+a => inst.IN1
+b => inst2.IN1
+b => inst.IN0
+cin => inst1.IN1
+cin => inst3.IN1
+si <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+
+

@@ -1,0 +1,83 @@
+{
+	"title" : "Flow Summary",
+	"data" : {
+		"data" : [
+			{
+				"0" : "Quartus Prime Version",
+				"1" : "23.1std.0 Build 991 11/28/2023 SC Lite Edition"
+			},
+			{
+				"0" : "Revision Name",
+				"1" : "test"
+			},
+			{
+				"0" : "Top-level Entity Name",
+				"1" : "test"
+			},
+			{
+				"0" : "Family",
+				"1" : "Cyclone IV GX"
+			},
+			{
+				"0" : "Device",
+				"1" : "EP4CGX15BF14A7"
+			},
+			{
+				"0" : "Timing Models",
+				"1" : "Final"
+			},
+			{
+				"0" : "Total logic elements",
+				"1" : "2"
+			},
+			{
+				"0" : "    Total combinational functions",
+				"1" : "2"
+			},
+			{
+				"0" : "    Dedicated logic registers",
+				"1" : "0"
+			},
+			{
+				"0" : "Total registers",
+				"1" : "0"
+			},
+			{
+				"0" : "Total pins",
+				"1" : "5"
+			},
+			{
+				"0" : "Total virtual pins",
+				"1" : "0"
+			},
+			{
+				"0" : "Total memory bits",
+				"1" : "0"
+			},
+			{
+				"0" : "Embedded Multiplier 9-bit elements",
+				"1" : "0"
+			},
+			{
+				"0" : "Total GXB Receiver Channel PCS",
+				"1" : "0"
+			},
+			{
+				"0" : "Total GXB Receiver Channel PMA",
+				"1" : "0"
+			},
+			{
+				"0" : "Total GXB Transmitter Channel PCS",
+				"1" : "0"
+			},
+			{
+				"0" : "Total GXB Transmitter Channel PMA",
+				"1" : "0"
+			},
+			{
+				"0" : "Total PLLs",
+				"1" : "0"
+			}
+		]
+	}
+}

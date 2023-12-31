@@ -1,0 +1,23 @@
+{
+	"title" : "Timing Analyzer||Multicorner Timing Analysis Summary",
+	"data" : {
+		"data" : [
+			{
+				"0" : "Worst-case Slack",
+				"1" : "N/A",
+				"2" : "N/A",
+				"3" : "N/A",
+				"4" : "N/A",
+				"5" : "N/A"
+			},
+			{
+				"0" : "Design-wide TNS",
+				"1" : "0.0",
+				"2" : "0.0",
+				"3" : "0.0",
+				"4" : "0.0",
+				"5" : "0.0"
+			}
+		]
+	}
+}

@@ -1,0 +1,7 @@
+{
+	"common_dir" : "/home/mvajhi/code/digital-system/test/",
+	"acds_version" : "Version 23.1std.0",
+	"platform" : "linux",
+	"os" : "Ubuntu 22.04.3",
+	"qpf" : "test.qpf"
+}
