@@ -1,25 +1,25 @@
 module qa(input in, rst, clk, output find);
     logic [2:0] ns,ps;
-    parameter [2:0] A = 2'b000,
-                    B = 2'b001,
-                    C = 2'b010,
-                    D = 2'b011,
-                    E = 2'b100,
-                    F = 2'b101,
-                    G = 2'b110,
-                    H = 2'b111;
+    parameter [2:0] A = 3'b000,
+                    B = 3'b001,
+                    C = 3'b010,
+                    D = 3'b011,
+                    E = 3'b100,
+                    F = 3'b101,
+                    G = 3'b110,
+                    H = 3'b111;
     
     always @(ps,in) begin
         ns = A;
         case (ps)
-            A: ns = w ? A : B;
-            B: ns = w ? C : B;
-            C: ns = w ? D : B;
-            D: ns = w ? E : B;
-            E: ns = w ? F : B;
-            F: ns = w ? G : B;
-            G: ns = w ? A : H;
-            H: ns = w ? C : B;
+            A: ns = in ? A : B;
+            B: ns = in ? C : B;
+            C: ns = in ? D : B;
+            D: ns = in ? E : B;
+            E: ns = in ? F : B;
+            F: ns = in ? G : B;
+            G: ns = in ? A : H;
+            H: ns = in ? C : B;
             default: ns = A;
         endcase
     end
