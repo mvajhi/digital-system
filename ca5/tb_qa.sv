@@ -1,3 +1,4 @@
+`timescale 1ns/1ns
 module tb_qa();
     logic in, clk = 0, rst = 0;
     wire out;
