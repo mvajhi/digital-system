@@ -9,7 +9,7 @@ module pre_qb(input rst, en, si, clk, output logic [7:0] out, output co);
                 counter <= counter + 1;
     end
 
-    assign co = en ? &counter : 1'b0;
+    assign co = &counter;
 
     // shift reg
     always@(posedge clk) begin
