@@ -1,4 +1,4 @@
-module qa(input in, rst, clk, output find);
+module pre_qa(input in, rst, clk, output find);
     logic [2:0] ns,ps;
     parameter [2:0] A = 3'b000,
                     B = 3'b001,
@@ -8,7 +8,8 @@ module qa(input in, rst, clk, output find);
                     F = 3'b101,
                     G = 3'b110,
                     H = 3'b111;
-    
+
+    // combinational part
     always @(ps,in) begin
         ns = A;
         case (ps)
@@ -24,8 +25,10 @@ module qa(input in, rst, clk, output find);
         endcase
     end
 
+    // output
     assign find = (ps == H) ? 1'b1 : 1'b0;
 
+    // sequential part
     always @(posedge clk, posedge rst) begin
         if (rst)
             ps <= A;
