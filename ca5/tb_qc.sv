@@ -2,9 +2,13 @@
 module tb_qc();
     logic ld = 1, clk = 0;
     logic [7:0] pi = 5;
-    wire co;
+    wire [1:0]co;
+    wire diff;
     
-    qc test(clk, ld, pi, co);
+    pre_qc test(clk, ld, pi, co[0]);
+    qc test2(clk, ld, pi, co[1]);
+
+    assign diff = ^co;
 
     always #100 clk = ~clk;
     initial begin

@@ -1,4 +1,4 @@
-module qc (input logic clk, input logic ld, input logic [7:0] pi, output logic co);
+module pre_qc (input logic clk, input logic ld, input logic [7:0] pi, output logic co);
   logic [7:0] out;
 
   always @(posedge clk, posedge ld) begin
