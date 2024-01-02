@@ -1,4 +1,4 @@
-module qb(input rst, en, si, clk, output logic [7:0] out, output co);
+module pre_qb(input rst, en, si, clk, output logic [7:0] out, output co);
     // counter
     logic [2:0] counter;
     always@(posedge clk, posedge rst) begin

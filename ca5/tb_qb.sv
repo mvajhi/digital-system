@@ -1,10 +1,16 @@
 `timescale 1ns/1ns
 module tb_qb();
     logic si, en = 1, clk = 0, rst = 1;
-    wire [7:0] out;
-    wire co;
+    wire [7:0] out[1:0];
+    wire [1:0] co;
+    wire diff_co;
+    wire [7:0]diff;
     
-    qb test(rst, en, si, clk, out, co);
+    qb test(rst, en, si, clk, out[0], co[0]);
+    pre_qb pre_test(rst, en, si, clk, out[1], co[1]);
+
+    assign diff_co = ^co;
+    assign diff = out[0] ^ out[1];
 
     always #100 clk = ~clk;
     initial begin
