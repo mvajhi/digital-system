@@ -3,7 +3,7 @@ module data_path (
     input [15:0] x,
     input s1_rom, s1_x,
     input s2_tmp, s2_x,
-    input [7:0] s3
+    input [7:0] s3,
     input s4_in, s4_mult,
     input ld_tmp, init_tmp,
     input ld_ans, init_ans,
@@ -15,9 +15,11 @@ module data_path (
     output logic [15:0] out_tmp,
     output logic less_cmp
 );
-    parameter [15:0] default_tmp = 16'b00000001 00000000, 
-                     default_ans = 16'b00000001 00000000;
-
+    parameter [15:0] default_tmp = 16'b0000000100000000, 
+                     default_ans = 16'b0000000100000000;
+    logic[15:0] rom_out;
+    logic [15:0] out_x;
+    logic [7:0] out_y;
     //MULT
     wire [31:0] out_mult_32;
     wire [15:0] out_mult;
@@ -43,7 +45,6 @@ module data_path (
     assign less_cmp = in_cmp_2 < in_cmp_1;
 
     // reg x
-    logic [15:0] out_x;
     wire [15:0] in_x;
     assign in_x = s4_in ? x : out_mult;
     always @(posedge clk) begin
@@ -74,19 +75,18 @@ module data_path (
     //ROM
     always @(s3) begin
         case(s3)
-            0: rom_out = 16'b0000 0000 1000 0000;
-            1: rom_out = 16'b0000 0000 0001 0101;
-            2: rom_out = 16'b0000 0000 0000 1000;
-            3: rom_out = 16'b0000 0000 0000 0100;
-            4: rom_out = 16'b0000 0000 0000 0010;
-            5: rom_out = 16'b0000 0000 0000 0001;
-            6: rom_out = 16'b0000 0000 0000 0001;
-            7: rom_out = 16'b0000 0000 0000 0001;
+            0: rom_out = 16'h0080;
+            1: rom_out = 16'h0019;
+            2: rom_out = 16'h0008;
+            3: rom_out = 16'h0004;
+            4: rom_out = 16'h0002;
+            5: rom_out = 16'h0001;
+            6: rom_out = 16'h0001;
+            7: rom_out = 16'h0001;
         endcase
     end
 
     //reg y
-    logic [7:0] out_y;
     always @(posedge clk) begin
         if (ld_y)
             out_y <= in_y;
