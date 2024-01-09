@@ -1,7 +1,12 @@
 `timescale 1ns/1ns
 module tb();
     logic start = 0, clk = 0;
-    logic[15:0] x = 16'h010c;
+    // pi/3 16'h010c
+    // pi/2 16'h0191
+    // pi/4 16'h00c8
+    // pi/1 16'h0324
+    // pi/5 16'h00a0
+    logic[15:0] x = 16'h00a0;
     logic[7:0] in_y = 8'b0;
     wire[15:0] out_ans;
     wire done;

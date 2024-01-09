@@ -20,6 +20,7 @@ module data_path (
     logic[15:0] rom_out;
     logic [15:0] out_x;
     logic [7:0] out_y;
+
     //MULT
     wire [31:0] out_mult_32;
     wire [15:0] out_mult;
@@ -58,7 +59,7 @@ module data_path (
     always @(posedge clk, posedge init_tmp) begin
         if (init_tmp)
             out_tmp <= default_tmp;
-        if (ld_tmp)
+        else if (ld_tmp)
             out_tmp <= in_tmp;
     end
     
@@ -68,7 +69,7 @@ module data_path (
     always @(posedge clk, posedge init_ans) begin
         if (init_ans)
             out_ans <= default_ans;
-        if (ld_ans)
+        else if (ld_ans)
             out_ans <= in_ans;
     end
     
