@@ -5,13 +5,14 @@ module state (
     input clk,
     output s1_rom, s1_x,
     output s2_tmp, s2_x,
-    output [7:0] s3,
+    output logic [2:0] s3,
     output s4_in, s4_mult,
     output ld_tmp, init_tmp,
     output ld_ans, init_ans,
     output ld_x,
     output sub,
-    output ld_y
+    output ld_y,
+    output done
 );
     parameter [2:0] s_idle = 3'b000,
                     s_intial = 3'b001,
@@ -37,21 +38,28 @@ module state (
     always @(posedge clk) begin
         ps <= ns;
     end
+    
+    always @(ps) begin
+        if (ps == s_idle)
+            s3 <= 8'b0;
+        else if (ps == s_add)
+            s3 <= s3 + 1'b1;
+    end
 
     assign s1_rom = (ps == s_mult_1) ? 1'b1 : 1'b0;
     assign s1_x = (ps == s_cal_x || ps == s_mult_2) ? 1'b1 : 1'b0;
     assign s2_tmp = (ps == s_mult_1 || ps == s_mult_2) ? 1'b1 : 1'b0;
     assign s2_x = (ps == s_cal_x) ? 1'b1 : 1'b0;
-    assign s3 = (ps == s_idle) ? 8'b0 : (ps == s_add) ? s3 + 1'b1 : s3;
     assign s4_in = (ps == s_intial) ? 1'b1 : 1'b0;
     assign s4_mult = (ps == s_cal_x) ? 1'b1 : 1'b0;
     assign ld_tmp = (ps == s_mult_1 || ps == s_mult_2) ? 1'b1 : 1'b0;
     assign init_tmp = (ps == s_cal_x) ? 1'b1 : 1'b0;
     assign init_ans = (ps == s_cal_x) ? 1'b1 : 1'b0;
     assign ld_ans = (ps == s_add) ? 1'b1 : 1'b0;
-    assign ld_x = (ps == s_intial) ? 1'b1 : 1'b0;
+    assign ld_x = (ps == s_intial || ps == s_cal_x) ? 1'b1 : 1'b0;
     assign sub = s3[0];
     assign ld_y = (ps == s_intial) ? 1'b1 : 1'b0;
 
     assign end_flag = (s3 == 3'b111 || less_cmp == 1'b1) ? 1'b1 : 1'b0;
+    assign done = end_flag;
 endmodule

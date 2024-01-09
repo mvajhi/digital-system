@@ -3,7 +3,7 @@ module data_path (
     input [15:0] x,
     input s1_rom, s1_x,
     input s2_tmp, s2_x,
-    input [7:0] s3,
+    input [2:0] s3,
     input s4_in, s4_mult,
     input ld_tmp, init_tmp,
     input ld_ans, init_ans,
@@ -42,7 +42,7 @@ module data_path (
     wire [15:0] in_cmp_1, in_cmp_2;
     assign in_cmp_1 = {8'b0, out_y};
     assign in_cmp_2 = out_tmp;
-    assign less_cmp = in_cmp_2 < in_cmp_1;
+    assign less_cmp = in_cmp_2 <= in_cmp_1;
 
     // reg x
     wire [15:0] in_x;
@@ -75,14 +75,14 @@ module data_path (
     //ROM
     always @(s3) begin
         case(s3)
-            0: rom_out = 4'h0080;
-            1: rom_out = 4'h0019;
-            2: rom_out = 4'h0008;
-            3: rom_out = 4'h0004;
-            4: rom_out = 4'h0002;
-            5: rom_out = 4'h0001;
-            6: rom_out = 4'h0001;
-            7: rom_out = 4'h0001;
+            0: rom_out = 16'h0080;
+            1: rom_out = 16'h0019;
+            2: rom_out = 16'h0008;
+            3: rom_out = 16'h0004;
+            4: rom_out = 16'h0002;
+            5: rom_out = 16'h0001;
+            6: rom_out = 16'h0001;
+            7: rom_out = 16'h0001;
         endcase
     end
 
