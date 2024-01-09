@@ -75,14 +75,14 @@ module data_path (
     //ROM
     always @(s3) begin
         case(s3)
-            0: rom_out = 16'h0080;
-            1: rom_out = 16'h0019;
-            2: rom_out = 16'h0008;
-            3: rom_out = 16'h0004;
-            4: rom_out = 16'h0002;
-            5: rom_out = 16'h0001;
-            6: rom_out = 16'h0001;
-            7: rom_out = 16'h0001;
+            0: rom_out = 4'h0080;
+            1: rom_out = 4'h0019;
+            2: rom_out = 4'h0008;
+            3: rom_out = 4'h0004;
+            4: rom_out = 4'h0002;
+            5: rom_out = 4'h0001;
+            6: rom_out = 4'h0001;
+            7: rom_out = 4'h0001;
         endcase
     end
 
