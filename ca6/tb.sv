@@ -6,7 +6,7 @@ module tb();
     // pi/4 16'h00c8
     // pi/1 16'h0324
     // pi/5 16'h00a0
-    logic[15:0] x = 16'h00a0;
+    logic[15:0] x = 16'h010c;
     logic[7:0] in_y = 8'b0;
     wire[15:0] out_ans;
     wire done;
@@ -18,10 +18,10 @@ module tb();
              out_ans,
              done);
 
-    always #100 clk = ~clk;
+    always #1000 clk = ~clk;
 
     initial begin
-        #110 start = 1;
-        #440 start = 0;
+        #1100 start = 1;
+        #4400 start = 0;
     end
 endmodule

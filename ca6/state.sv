@@ -21,8 +21,9 @@ module state (
                     s_mult_2 = 3'b100,
                     s_add = 3'b101;
     logic end_flag;
-
     logic [2:0] ps, ns;
+
+    // transfer part
     always @(ps, start, end_flag) begin
         case(ps)
         s_idle:     ns = start ? s_intial : s_idle;
@@ -38,14 +39,8 @@ module state (
     always @(posedge clk) begin
         ps <= ns;
     end
-    
-    always @(ps) begin
-        if (ps == s_idle)
-            s3 <= 8'b0;
-        else if (ps == s_add)
-            s3 <= s3 + 1'b1;
-    end
 
+    // out signals
     assign s1_rom = (ps == s_mult_1) ? 1'b1 : 1'b0;
     assign s1_x = (ps == s_cal_x || ps == s_mult_2) ? 1'b1 : 1'b0;
     assign s2_tmp = (ps == s_mult_1 || ps == s_mult_2) ? 1'b1 : 1'b0;
@@ -59,7 +54,18 @@ module state (
     assign ld_x = (ps == s_intial || ps == s_cal_x) ? 1'b1 : 1'b0;
     assign sub = s3[0];
     assign ld_y = (ps == s_intial) ? 1'b1 : 1'b0;
-
-    assign end_flag = (s3 == 3'b111 || less_cmp == 1'b1) ? 1'b1 : 1'b0;
     assign done = end_flag;
+
+    // other parts
+	 wire [2:0] ns3;
+	 assign ns3 = s3 + 1'b1;
+    assign end_flag = (s3 == 3'b111 || less_cmp == 1'b1) ? 1'b1 : 1'b0;
+    always @(posedge clk) begin
+        if (ps == s_idle)
+            s3 <= 3'b0;
+        else if (ps == s_add)
+            s3 <= ns3;
+			else
+				s3 <= s3;
+    end
 endmodule
