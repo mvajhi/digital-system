@@ -34,8 +34,8 @@ module data_path (
     //ADD/SUB
     wire [15:0] in_add_1, in_add_2;
     wire [15:0] out_add;
-    assign out_add = sub ? in_add_2 - in_add_1 :
-                           in_add_2 + in_add_1;
+    assign out_add = sub ? in_add_2 + in_add_1 :
+                           in_add_2 - in_add_1;
     assign in_add_1 = out_tmp;
     assign in_add_2 = out_ans;
 

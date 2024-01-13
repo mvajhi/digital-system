@@ -6,7 +6,7 @@ module tb();
     // pi/4 16'h00c8
     // pi/1 16'h0324
     // pi/5 16'h00a0
-    logic[15:0] x = 16'h010c;
+    logic[15:0] x = 16'h0191;
     logic[7:0] in_y = 8'b0;
     wire[15:0] out_ans;
     wire done;
