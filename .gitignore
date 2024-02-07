@@ -55,7 +55,7 @@ quartus_file
 *.tcl
 *.txt # Explicitly add any text files used
 *~
-*example*
+# *example*
 *sopc_*
 # *.sdc # I want those timing files
 
