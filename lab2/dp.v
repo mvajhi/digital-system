@@ -65,9 +65,15 @@ module port_count (
     input clk_en,
     input rst,
     input cnt,
-    output reg [1:0] co
+    output reg co
 );
-// TODO
+    always @(posedge clk, posedge rst) begin
+        if (rst)
+            co <= 1'b0;
+        else if (clk_en)
+            if (cntD)
+                co <= ~co; //! IQ9999999999999999
+    end
 endmodule
 
 module port_num_shr (
@@ -76,9 +82,15 @@ module port_num_shr (
     input rst,
     input serin,
     input sh_en,
-    output reg [1:0] co
+    output reg [1:0] port_num
 );
-// TODO
+    always @(posedge clk, posedge rst) begin
+        if (rst)
+            port_num = 2'b0;
+        else if (clk_en)
+            if (sh_en)
+                port_num <= {port_num[0], serin};
+    end
 endmodule
 
 module data_num_cnt (
@@ -88,7 +100,16 @@ module data_num_cnt (
     input cnt,
     output reg [1:0] co
 );
-// TODO
+    always @(posedge clk, posedge rst) begin
+        if (rst)
+            par_out <= 2'b0;
+        else if (clk_en)
+            if (ldcntD)
+                par_out <= num_data;
+            else if (cntD)
+                par_out <= par_out + 1'b1;
+    end
+    assign coD = (par_out == 2'b11);
 endmodule
 
 module data_num_shr (
@@ -99,7 +120,13 @@ module data_num_shr (
     input sh_en,
     output reg [3:0] num_data
 );
-// TODO
+    always @(posedge clk, posedge rst) begin
+        if (rst)
+            num_data = 4'b0;
+        else if (clk_en)
+            if (sh_en)
+                num_data <= {num_data[2:0], serin};
+    end
 endmodule
 
 module data_trans_cnt (
