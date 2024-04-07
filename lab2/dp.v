@@ -110,12 +110,35 @@ module data_trans_cnt (
     input cntD,
     input [3:0] num_data,
     output reg [3:0] par_out,
-    output reg coD
+    output coD
 );
     always @(posedge clk, posedge rst) begin
         if (rst)
             par_out <= 4'b0;
         else if (clk_en)
-            if (sh_en)
+            if (ldcntD)
+                par_out <= num_data;
+            else if (cntD)
+                par_out <= par_out - 1'b1;
+    end
+    assign coD = (par_out == 4'b0);
+endmodule
+
+module demnx (
+    input serout,
+    input [1:0] port_num,
+    output P0,
+    output P1,
+    output P2,
+    output P3
+);
+    always @(serout, port_num) begin
+        {P0, P1, P2, P3} = 4'b0
+        case (port_num)
+            2'd0: P0 = 1'b1;
+            2'd1: P1 = 1'b1;
+            2'd2: P2 = 1'b1;
+            2'd3: P3 = 1'b1;
+        endcase
     end
 endmodule
