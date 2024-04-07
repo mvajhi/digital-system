@@ -144,7 +144,7 @@ module data_trans_cnt (
             par_out <= 4'b0;
         else if (clk_en)
             if (ldcntD)
-                par_out <= num_data;
+                par_out <= num_data - 1'b1;
             else if (cntD)
                 par_out <= par_out - 1'b1;
     end

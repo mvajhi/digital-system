@@ -7,13 +7,13 @@ module OnePulser (
     parameter [2:0] A = 2'b00,
                     B = 2'b01,
                     C = 2'b10;
-    reg [2:0] ps, ns;
+    reg [1:0] ps, ns;
 
     always @(ps) begin
         case (ps)
-            A:          ns = LP ? B : A;
+            A:          ns = ~LP ? B : A;
             B:          ns = C;
-            C:          ns = LP ? C : A;
+            C:          ns = ~LP ? C : A;
             default:    ns = A;
         endcase
     end
