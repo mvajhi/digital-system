@@ -6,14 +6,14 @@ module controller (
     input co1,
     input co2,
     input coD,
-    output cnt1,
-    output cnt2,
-    output cntD,
-    output ldcntD,
-    output sh_enD,
-    output sh_enP,
-    output SerOutValid,
-    output done
+    output reg cnt1,
+    output reg cnt2,
+    output reg cntD,
+    output reg ldcntD,
+    output reg sh_enD,
+    output reg sh_enP,
+    output reg SerOutValid,
+    output reg done
 );
 
     parameter [2:0] Idle = 3'd0,
@@ -35,7 +35,7 @@ module controller (
     end
 
     always @(ps) begin
-        {cnt1, cnt2, cntD, ldcntD, sh_enD, sh_enP, SerOutValid, done} = 8'b0
+        {cnt1, cnt2, cntD, ldcntD, sh_enD, sh_enP, SerOutValid, done} = 8'b0;
         case (ps)
             GetPortNum: {sh_enP, cnt1} = 2'b11;
             GetDataNum: {sh_enD, cnt2} = 2'b11;

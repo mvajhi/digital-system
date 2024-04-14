@@ -16,7 +16,7 @@ module DataPath (
     output P1,
     output P2,
     output P3,
-    output [6:0] SSD_out,
+    output [6:0] SSD_out
 );
     
     wire [1:0] port_num;

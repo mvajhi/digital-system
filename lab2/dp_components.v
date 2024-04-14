@@ -3,7 +3,7 @@ module SSD (
     output reg [6:0] SSD_out
 );
     always @(count) begin
-        SSD_out = 4'h0
+        SSD_out = 4'h0;
         case (count)
             4'h0: SSD_out = 7'h40;
             4'h1: SSD_out = 7'h79;
@@ -71,7 +71,7 @@ module port_count (
         if (rst)
             co <= 1'b0;
         else if (clk_en)
-            if (cntD)
+            if (cnt)
                 co <= ~co; //! IQ9999999999999999
     end
 endmodule
@@ -100,16 +100,15 @@ module data_num_cnt (
     input cnt,
     output reg [1:0] co
 );
+    reg par_out = 2'b0;
     always @(posedge clk, posedge rst) begin
         if (rst)
             par_out <= 2'b0;
         else if (clk_en)
-            if (ldcntD)
-                par_out <= num_data;
-            else if (cntD)
+            if (cnt)
                 par_out <= par_out + 1'b1;
     end
-    assign coD = (par_out == 2'b11);
+    assign co = (par_out == 2'b11);
 endmodule
 
 module data_num_shr (
@@ -154,13 +153,13 @@ endmodule
 module demnx (
     input serout,
     input [1:0] port_num,
-    output P0,
-    output P1,
-    output P2,
-    output P3
+    output reg P0,
+    output reg P1,
+    output reg P2,
+    output reg P3
 );
     always @(serout, port_num) begin
-        {P0, P1, P2, P3} = 4'b0
+        {P0, P1, P2, P3} = 4'b0;
         case (port_num)
             2'd0: P0 = 1'b1;
             2'd1: P1 = 1'b1;

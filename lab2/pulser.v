@@ -19,7 +19,7 @@ module OnePulser (
     end
 
     always @(ps) begin
-        SP = 1'b0
+        SP = 1'b0;
         case (ps)
             B: SP = 1'b1; 
         endcase
