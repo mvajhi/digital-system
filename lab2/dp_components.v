@@ -98,7 +98,7 @@ module data_num_cnt (
     input clk_en,
     input rst,
     input cnt,
-    output reg [1:0] co
+    output co
 );
     reg par_out = 2'b0;
     always @(posedge clk, posedge rst) begin
