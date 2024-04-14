@@ -41,6 +41,7 @@ module controller (
             GetDataNum: {sh_enD, cnt2} = 2'b11;
             ld_DT: {ldcntD, SerOutValid} = 2'b11;
             CountData: {cntD, SerOutValid, done} = {2'b11, coD};
+            default: {cnt1, cnt2, cntD, ldcntD, sh_enD, sh_enP, SerOutValid, done} = 8'b0;
         endcase
     end
 
