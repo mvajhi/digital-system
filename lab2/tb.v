@@ -2,7 +2,7 @@ module tb ();
     reg clk=0;
     reg rst,
         serIn,
-        clkPB=0;
+        clkPB=1;
     wire P0,
         P1,
         P2,
@@ -24,7 +24,7 @@ module tb ();
         SSD_out
     );
 
-    always #100 clk = ~clk;
+    always #10 clk = ~clk;
     always #100 clkPB = ~clkPB;
     always begin
         {rst, serIn} = 2'b11;

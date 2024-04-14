@@ -34,7 +34,7 @@ module controller (
         endcase
     end
 
-    always @(ps) begin
+    always @(ps, coD) begin
         {cnt1, cnt2, cntD, ldcntD, sh_enD, sh_enP, SerOutValid, done} = 8'b0;
         case (ps)
             GetPortNum: {sh_enP, cnt1} = 2'b11;
@@ -47,7 +47,7 @@ module controller (
     always @(posedge clk, posedge rst) begin
         if (rst)
             ps <= Idle;
-        else
+        else if (clk_en)
             ps <= ns;
     end
     

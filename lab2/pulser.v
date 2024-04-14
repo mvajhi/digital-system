@@ -9,11 +9,12 @@ module OnePulser (
                     C = 2'b10;
     reg [1:0] ps, ns;
 
-    always @(ps) begin
+    always @(ps, LP) begin
+        ns = A;
         case (ps)
-            A:          ns = ~LP ? B : A;
+            A:          ns = LP ? B : A;
             B:          ns = C;
-            C:          ns = ~LP ? C : A;
+            C:          ns = LP ? C : A;
             default:    ns = A;
         endcase
     end

@@ -100,7 +100,7 @@ module data_num_cnt (
     input cnt,
     output co
 );
-    reg par_out = 2'b0;
+    reg [1:0] par_out;
     always @(posedge clk, posedge rst) begin
         if (rst)
             par_out <= 2'b0;
@@ -161,10 +161,10 @@ module demnx (
     always @(serout, port_num) begin
         {P0, P1, P2, P3} = 4'b0;
         case (port_num)
-            2'd0: P0 = 1'b1;
-            2'd1: P1 = 1'b1;
-            2'd2: P2 = 1'b1;
-            2'd3: P3 = 1'b1;
+            2'd0: P0 = serout;
+            2'd1: P1 = serout;
+            2'd2: P2 = serout;
+            2'd3: P3 = serout;
         endcase
     end
 endmodule
