@@ -8,7 +8,7 @@ module tb ();
         P2,
         P3,
         done,
-        serOutValid,
+        serOutValid;
     wire [6:0]SSD_out;
     MSSD mir (
         clk,
@@ -24,8 +24,8 @@ module tb ();
         SSD_out
     );
 
-    forever #100 clk = ~clk;
-    forever #100 clkPB = ~clkPB;
+    always #100 clk = ~clk;
+    always #100 clkPB = ~clkPB;
     always begin
         {rst, serIn} = 2'b11;
         #100 rst = 0;
