@@ -37,5 +37,6 @@ module tb ();
         #200 serIn = 1;
         #200 serIn = 0;
         #200 serIn = 1;
+        #600 $stop;
     end
 endmodule
