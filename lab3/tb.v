@@ -17,13 +17,19 @@ module Waveform_Generator_tb;
         reset = 1;
         func = 0;
         #10 reset = 0;
-        #100 reset = 1;
+
+        #10000 reset = 1;
         func = 1;
         #10 reset = 0;
-        #100 reset = 1;
+
+        #10000 reset = 1;
         func = 2;
         #10 reset = 0;
-        #100 $finish;
+
+        #10000 reset = 1;
+        func = 3;
+        #10 reset = 0;
+        #10000 $finish;
     end
 
 endmodule

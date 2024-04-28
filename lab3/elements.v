@@ -32,36 +32,36 @@ module Waveform_Generator (
         else case (func)
             //Reciprocal
             3'b000: begin
-                out <= 8'd255 / (8'd255 - count)
+                out <= 8'd255 / (8'd255 - count);
             end
             //Square
             3'b001: begin
                 if (count <= 8'd127)
-                    out <= 8'b1;
+                    out <= 8'd255;
                 else
                     out <= 8'b0;
             end
             //Triangle
             3'b010: begin
                 if (count <= 8'd127)
-                    out <= count << 1;
+                    out <= (count << 1);
                 else
-                    out <= 8'd512 - count << 1;
+                    out <= 9'd511 - (count << 1);
             end
             //Trapezius
             3'b011: begin
                 if (count <= 8'd63)
                     out <= count << 2;
-                else if (count <= 8'd191)
+                else if (count <= 8'd192)
                     out <= 8'd255;
                 else
-                    out <= 9'd1020 - count << 2;
+                    out <= 9'd1024 - count << 2;
             end
             // //DDS-Sine
             // 3'b100: begin
             //     out <= 8'd128 + 8'd127 * sin(count);
             // end
-            default: 
+            // default: 
         endcase
     end
 
