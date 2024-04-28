@@ -67,3 +67,90 @@ module Waveform_Generator (
 
 endmodule
 
+module AMP_selector (
+    input wire [7:0] data_in,
+    input wire [1:0] shift_amount,
+    output reg [7:0] data_out
+);
+    always @(data_in, shift_amount) begin
+        case (shift_amount)
+            2'b00: data_out <= data_in;     // No shift
+            2'b01: data_out <= data_in >> 1;  // Shift by 1
+            2'b10: data_out <= data_in >> 2;  // Shift by 2
+            2'b11: data_out <= data_in >> 3;  // Shift by 3
+        endcase
+    end
+endmodule
+
+module Counter9bit (
+    input wire clk,
+    input wire reset,
+    input wire load,
+    input wire [8:0] init_value,
+    output reg [8:0] count,
+    output carry
+);
+    always @(posedge clk or posedge reset) begin
+        if (reset)
+            count <= 9'b0;
+        else if (load)
+            count <= init_value;
+        else
+            count <= count + 1;
+    end
+    assign carry = &count;
+endmodule
+
+module Frequency_Selector (
+    input wire clk,
+    input wire reset,
+    input wire freq_load,
+    input wire[4:0] init ,
+    output wire out
+);
+    wire [8:0] count;
+    wire carry;
+    Counter9bit counter (
+        .clk(clk),
+        .reset(reset),
+        .load(freq_load | carry),
+        .init_value({~init + 1, 4'b0110}),
+        .count(count),
+        .carry(carry)
+    );
+    
+    assign out = carry;
+endmodule
+
+module TopModule (
+    input wire clk,
+    input wire reset,
+    input wire freq_load,
+    input wire [4:0] freq_in,
+    input wire [2:0] func,
+    output wire [7:0] out
+);
+    wire freq_sel_out;
+    wire [7:0] waveform_out;
+
+    Frequency_Selector freq_sel (
+        .clk(clk),
+        .reset(reset),
+        .freq_load(freq_load),
+        .init(freq_in),
+        .out(freq_sel_out)
+    );
+
+    AMP_Selector amp_sel (
+        .reset(reset),
+        .amp_in(waveform_out),
+        .amp_out(out)
+    );
+
+    Waveform_Generator waveform_gen (
+        .clk(freq_sel_out),
+        .reset(reset),
+        .func(func),
+        .out(waveform_out),
+    );
+endmodule
