@@ -72,11 +72,11 @@ module Waveform_Generator (
             end
             //DDS-full-wave-rectified
             3'b101: begin
-                out <= dds_out[8] ? ~dds_out[7:0] + 1'b1 : dds_out[7:0];
+                out <= dds_out[7:0] < 8'd127 ? 9'd256 - dds_out[7:0] : dds_out[7:0];
             end
             //DDS-half-wave-rectified
             3'b110: begin
-                out <= dds_out[8] ? 8'b0 : dds_out[7:0];
+                out <= dds_out[7:0] < 8'd127 ? 8'd127 : dds_out[7:0];
             end
         endcase
     end
@@ -130,7 +130,7 @@ module Frequency_Selector (
         .clk(clk),
         .reset(reset),
         .load(freq_load | carry),
-        .init_value({~init + 1, 4'b0110}),
+        .init_value({~init + 1'b1, 4'b0110}),
         .count(count),
         .carry(carry)
     );
@@ -142,6 +142,7 @@ module TopModule (
     input wire clk,
     input wire reset,
     input wire freq_load,
+    input wire [1:0] shift_amount,
     input wire [4:0] freq_in,
     input wire [2:0] func,
     output wire [7:0] out
@@ -157,17 +158,17 @@ module TopModule (
         .out(freq_sel_out)
     );
 
-    AMP_Selector amp_sel (
-        .reset(reset),
-        .amp_in(waveform_out),
-        .amp_out(out)
+   AMP_selector amp_sel (
+        .shift_amount(shift_amount),
+        .data_in(waveform_out),
+        .data_out(out)
     );
 
     Waveform_Generator waveform_gen (
         .clk(freq_sel_out),
         .reset(reset),
         .func(func),
-        .out(waveform_out),
+        .out(waveform_out)
     );
 endmodule
 
@@ -194,8 +195,8 @@ module DDS (
     wire [5:0] addr_ROM = phase_pos ? ~addr + 1'b1 : addr;
     wire [7:0] data_ROM = ROM[addr_ROM];
 
-    wire [8:0] row_data = (~|addr & phase_pos) ? data_ROM : 8'b1;
-    assign out = sign_bit ? ~row_data + 1'b1 + 9'd255 : {1'b0, row_data};
+    wire [8:0] row_data = (~|addr & phase_pos) ? 8'b11111111 : data_ROM;
+    assign out = (row_data > 8'd127) & sign_bit ? 9'd256 - row_data : {1'b0, row_data};
 endmodule
 
 module Phase_Accumulator (
@@ -216,7 +217,7 @@ module Phase_Accumulator (
     assign addr = count;
     // 4 state more machine
     reg [1:0] ps;
-    wire [1:0] ns;
+    reg [1:0] ns;
 
     always @(posedge clk or posedge rst) begin
         if (rst)
@@ -270,4 +271,38 @@ module Counter6bit (
             count <= count + 1'b1;
     end
     assign carry = &count;
+endmodule
+
+module Counter8bit (
+    input clk,
+    input rst,
+    output reg [7:0] count,
+    output reg carry
+);
+
+    always @(posedge clk or posedge rst) begin
+        if (rst)
+            count <= 8'b0;
+        else
+            count <= count + 1'b1;
+    end
+    assign carry = &count;
+endmodule
+
+module PWM (
+    input clk,
+    input rst,
+    input [7:0] in,
+    output out
+);
+
+    wire [7:0] count;
+    wire carry;
+    Counter8bit counter (
+        .clk(clk),
+        .rst(rst),
+        .count(count),
+        .carry(carry)
+    );
+    assign out = in > count;
 endmodule
