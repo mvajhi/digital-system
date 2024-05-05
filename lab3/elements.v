@@ -114,7 +114,7 @@ module Frequency_Selector (
         .clk(clk),
         .reset(reset),
         .load(freq_load | carry),
-        .init_value({~init + 1'b1, 4'b0110}),
+        .init_value({~init + 1, 4'b0110}),
         .count(count),
         .carry(carry)
     );
@@ -128,7 +128,6 @@ module TopModule (
     input wire freq_load,
     input wire [4:0] freq_in,
     input wire [2:0] func,
-    input wire [1:0] shift_amount,
     output wire [7:0] out
 );
     wire freq_sel_out;
@@ -142,16 +141,17 @@ module TopModule (
         .out(freq_sel_out)
     );
 
-    AMP_selector amp_sel (
-        .shift_amount(shift_amount),
-        .data_in(waveform_out),
-        .data_out(out)
+    AMP_Selector amp_sel (
+        .reset(reset),
+        .amp_in(waveform_out),
+        .amp_out(out)
     );
 
     Waveform_Generator waveform_gen (
         .clk(freq_sel_out),
         .reset(reset),
         .func(func),
-        .out(waveform_out)
+        .out(waveform_out),
     );
 endmodule
+
