@@ -26,6 +26,15 @@ module Waveform_Generator (
         .count(count)
     );
 
+    //DDS
+    wire [8:0] dds_out;
+    DDS dds (
+        .clk(clk),
+        .rst(reset),
+        .out(dds_out)
+    );
+
+
     always @(posedge clk or posedge reset) begin
         if (reset)
             out <= 8'b0;
@@ -57,11 +66,18 @@ module Waveform_Generator (
                 else
                     out <= 9'd1024 - count << 2;
             end
-            // //DDS-Sine
-            // 3'b100: begin
-            //     out <= 8'd128 + 8'd127 * sin(count);
-            // end
-            // default: 
+            //DDS-Sine
+            3'b100: begin
+                out <= dds_out;
+            end
+            //DDS-full-wave-rectified
+            3'b101: begin
+                out <= dds_out[8] ? ~dds_out[7:0] + 1'b1 : dds_out[7:0];
+            end
+            //DDS-half-wave-rectified
+            3'b110: begin
+                out <= dds_out[8] ? 8'b0 : dds_out[7:0];
+            end
         endcase
     end
 
@@ -155,3 +171,103 @@ module TopModule (
     );
 endmodule
 
+module DDS (
+    input clk,
+    input rst,
+    output reg [8:0] out
+);
+    wire [5:0] addr;
+    wire phase_pos;
+    wire sign_bit;
+    Phase_Accumulator phase_accumulator (
+        .clk(clk),
+        .rst(rst),
+        .addr(addr),
+        .phase_pos(phase_pos),
+        .sign_bit(sign_bit)
+    );
+    reg [7:0] ROM [0:63];
+    initial begin
+        $readmemb("sine.mem", ROM);
+    end
+
+    wire [5:0] addr_ROM = phase_pos ? ~addr + 1'b1 : addr;
+    wire [7:0] data_ROM = ROM[addr_ROM];
+
+    wire [8:0] row_data = (~|addr & phase_pos) ? data_ROM : 8'b1;
+    assign out = sign_bit ? ~row_data + 1'b1 + 9'd255 : {1'b0, row_data};
+endmodule
+
+module Phase_Accumulator (
+    input clk,
+    input rst,
+    output reg [5:0] addr,
+    output reg phase_pos,
+    output reg sign_bit
+);
+    wire [5:0] count;
+    wire carry;
+    Counter6bit counter (
+        .clk(clk),
+        .rst(rst),
+        .count(count),
+        .carry(carry)
+    );
+    assign addr = count;
+    // 4 state more machine
+    reg [1:0] ps;
+    wire [1:0] ns;
+
+    always @(posedge clk or posedge rst) begin
+        if (rst)
+            ps <= 2'b00;
+        else
+            ps <= ns;
+    end
+
+    always @(carry) begin
+        case (ps)
+            2'b00: ns = carry ? 2'b01 : 2'b00;
+            2'b01: ns = carry ? 2'b10 : 2'b01;
+            2'b10: ns = carry ? 2'b11 : 2'b10;
+            2'b11: ns = carry ? 2'b00 : 2'b11;
+        endcase
+    end
+
+    always @(ps) begin
+        case (ps)
+            2'b00: begin
+                phase_pos = 1'b0;
+                sign_bit = 1'b0;
+            end
+            2'b01: begin
+                phase_pos = 1'b1;
+                sign_bit = 1'b0;
+            end
+            2'b10: begin
+                phase_pos = 1'b0;
+                sign_bit = 1'b1;
+            end
+            2'b11: begin
+                phase_pos = 1'b1;
+                sign_bit = 1'b1;
+            end
+        endcase
+    end
+endmodule
+
+module Counter6bit (
+    input clk,
+    input rst,
+    output reg [5:0] count,
+    output reg carry
+);
+
+    always @(posedge clk or posedge rst) begin
+        if (rst)
+            count <= 6'b0;
+        else
+            count <= count + 1'b1;
+    end
+    assign carry = &count;
+endmodule

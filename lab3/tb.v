@@ -23,15 +23,15 @@ module tb;
         reset = 1;
         freq_load = 1;
         freq_in = 5'b0;
-        func = 0;
+        func = 4;
         #10 reset = 0;
         freq_load = 0;
 
-        #1000000 func = 1;
+        #1000000 func = 5;
         #1000000 shift_amount = 2'b01;
         #10 reset = 1;
         #10 reset = 0;
-        #1000000 func = 2;
+        #1000000 func = 6;
         #1000000 shift_amount = 2'b10;
         #10 reset = 1;
         #10 reset = 0;
