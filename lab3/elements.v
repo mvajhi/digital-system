@@ -1,18 +1,3 @@
-module Counter8bit (
-    input wire clk,
-    input wire reset,
-    output reg [7:0] count
-);
-
-    always @(posedge clk or posedge reset) begin
-        if (reset)
-            count <= 8'b0;
-        else
-            count <= count + 1;
-    end
-
-endmodule
-
 module Waveform_Generator (
     input wire clk,
     input wire reset,
@@ -20,10 +5,12 @@ module Waveform_Generator (
     output reg [7:0] out
 );
     wire [7:0] count;
+    wire co;
     Counter8bit counter (
         .clk(clk),
-        .reset(reset),
-        .count(count)
+        .rst(reset),
+        .count(count),
+        .carry(co)
     );
 
     //DDS
