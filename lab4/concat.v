@@ -1,8 +1,8 @@
 module concat (
-    input [7:0] vi,
-    output [23:0] result
+    input [4:0] vi,
+    output [15:0] result
 );
 
-    assign result = {8'b000, vi, 8'b00000000};
+    assign result = {3'b000, vi, 8'b00000000};
 
 endmodule

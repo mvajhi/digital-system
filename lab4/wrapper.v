@@ -9,7 +9,11 @@ module Wrapper(
     output [20:0] out
 );
 
-    wire w_done, ldx, ldu, shiftL, eng_start;
+    wire ldx, ldu, shiftL, eng_start;
+    wire [15:0] engx;
+    wire [1:0] ui_out;
+    wire [1:0] int_part;
+    wire [15:0] frac_part;
 
     WrapperCTRL CTRL(
         .clk(clk),
@@ -28,7 +32,8 @@ module Wrapper(
         .clk(clk),
         .reset(rst),
         .load(ldx),
-        .shift_in(vi),
+        .shift_in(shiftL),
+        .in(vi),
         .shift_out(engx)
     );
 
@@ -51,11 +56,9 @@ module Wrapper(
     );
 
     CombShift CS(
-        .clk(clk),
-        .reset(rst),
-        .shift(ui_out),
-        .data_in({int_part, frac_part}),
-        .data_out(out)
+        .shift_amount(ui_out),
+        .main_input({int_part, frac_part}),
+        .shifted_output(out)
     );
 
 endmodule

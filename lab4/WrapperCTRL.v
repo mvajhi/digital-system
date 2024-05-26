@@ -4,7 +4,7 @@ module WrapperCTRL (
     input w_start,
     input eng_done,
     output reg w_done,
-    output reg w_req.
+    output reg w_req,
     output reg ldx,
     output reg ldu,
     output reg shiftL,
@@ -12,9 +12,10 @@ module WrapperCTRL (
 );
     parameter idle = 0, load = 1, start_exp = 2, wait_exp = 3, save = 4;
     reg [2:0] ps;
-    wire [2:0] ns;
+    reg [2:0] ns;
     reg cnt;
     wire co;
+    wire [1:0] count;
 
     Counter2bit cnt2bit (
         .clk(clk),
@@ -68,7 +69,7 @@ module WrapperCTRL (
             load: ns = w_start ? load : start_exp;
             start_exp: ns = wait_exp;
             wait_exp: ns = eng_done ? save : wait_exp;
-            save: ns = cnt ? idle : start_exp;
+            save: ns = co ? idle : start_exp;
         endcase
     end
 endmodule

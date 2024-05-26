@@ -1,6 +1,7 @@
-module tb_exponential;
+`timescale 1ns/1ns
+module tb_exponential();
   
-  reg clk, rst, start;
+  reg clk=0, rst, start;
   reg [15:0] x;
   wire done;
   wire [1:0] intpart;
@@ -17,18 +18,20 @@ module tb_exponential;
   );
   
   initial begin
-    clk = 0;
     rst = 1;
+    #10rst = 0;
     start = 0;
-    x = 16'b1000_0000_0000_0000;
+    #10 x = 16'b1000_0000_0000_0000;
+     start = 1;
+    #10 start = 0;
     
-    #10 rst = 0;
-    #10 start = 1;
-    #10 x = 16'b0100_0000_0000_0000;
+    #400 x = 16'b0100_0000_0000_0000;
+     start = 1;
+    #10 start = 0;
     
-    #10 rst = 0;
-    #10 start = 1;
-    #10 x = 16'b1100_0000_0000_0000;
+    #400 x = 16'b1100_0000_0000_0000;
+     start = 1;
+    #10 start = 0;
   
     
     #100 $finish;
