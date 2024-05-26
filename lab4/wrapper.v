@@ -14,6 +14,7 @@ module Wrapper(
     wire [1:0] ui_out;
     wire [1:0] int_part;
     wire [15:0] frac_part;
+    wire eng_done;
 
     WrapperCTRL CTRL(
         .clk(clk),

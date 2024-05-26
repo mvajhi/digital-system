@@ -90,7 +90,7 @@ begin
     end
     else if (cnt)
     begin
-        count <= count + 1;
+        count <= count + 1'b1;
     end
 end
 

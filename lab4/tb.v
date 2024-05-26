@@ -30,7 +30,7 @@ module tb();
 
         w_start = 1'b0;
         vi = 5'b11111;
-        ui = 2'b00;
+        ui = 2'b01;
         reset = 1'b0;    
         #20 reset = 1'b1;    
         #20 reset = 1'b0;    
